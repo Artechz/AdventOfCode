@@ -3,7 +3,7 @@ package paed.days;
 import java.io.File;
 import java.util.Scanner;
 
-public class Day2 {
+public class Day2_hard {
 
     public static void go() {
         final int X = 0, Y = 1;
@@ -11,14 +11,18 @@ public class Day2 {
         File file = new File(PATH);
 
         int[] location = new int[2];
+        int aim = 0;
 
         try {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine())
                 switch (reader.next())  {
-                    case "forward" -> location[X] += reader.nextInt();
-                    case "down" -> location[Y] += reader.nextInt();
-                    case "up" -> location[Y] -= reader.nextInt();
+                    case "forward" -> {
+                        int input = reader.nextInt();
+                        location[X] += input;
+                        location[Y] += input * aim;}
+                    case "down" -> aim += reader.nextInt();
+                    case "up" -> aim -= reader.nextInt();
                 }
         }
         catch (Exception ignored){
